@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+  build:
+    commands:
+      - mvn -DskipTests package
+  post_build:
+    commands:
+      - mvn test
+      - mv ./target/*.war ./target/ROOT.war
+artifacts:
+  files:
+    - ./target/*.war
+  discard-paths: yes
